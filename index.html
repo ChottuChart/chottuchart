@@ -98,7 +98,6 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
   position:relative;z-index:2;
 }
 
-.hero-left{}
 .chip{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--gold-bg);border:1px solid var(--gold-border);
@@ -173,155 +172,113 @@ h1 .accent{
 }
 .badge i{color:var(--green);font-size:.8rem}
 
-/* ── HERO VIDEO PLAYER CARD (DARK THEME FROM MOCKUP) ── */
-.ai-player-card {
-  background: #0f1319;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.08);
-  position: relative;
-  overflow: hidden;
+/* ── HERO AI VIDEO CARD (CHOTTUCHART AI) ── */
+.ai-card{
+  background:#12161f;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
 }
-.ai-player-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c9990a, #e8b420, #c9990a);
+.ai-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),#4ade80);
 }
-.player-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+.ai-card-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:14px;
 }
-.player-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #fff;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+.ai-card-title{
+  display:flex;align-items:center;gap:8px;
+  color:#fff;font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:700;
 }
-.player-title img, .player-title span.bot-icon {
-  font-size: 1.3rem;
+.ai-card-title i{color:var(--gold2);font-size:1.1rem}
+.ai-live-badge{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.4);
+  color:#4ade80;font-size:.68rem;font-weight:700;
+  padding:4px 10px;border-radius:100px;letter-spacing:.05em;
 }
-.live-badge {
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  color: #10b981;
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.05em;
-}
-.live-badge::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: #10b981;
-  border-radius: 50%;
-  animation: blink 1.4s infinite;
+.ai-live-badge .dot{
+  width:6px;height:6px;border-radius:50%;background:#4ade80;
+  animation:blink 1.4s infinite;
 }
 
-/* Video Wrapper */
-.video-container {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border-radius: 14px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(255,255,255,0.1);
-  margin-bottom: 16px;
+/* Landscape Video Container (16:9 aspect ratio) */
+.video-wrapper{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.1);
+  margin-bottom:16px;
 }
-.video-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.video-wrapper video{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
 }
-.video-overlay-tag {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  background: rgba(15, 17, 23, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(201, 153, 10, 0.4);
-  color: #e8b420;
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  pointer-events: none;
+.video-tag-overlay{
+  position:absolute;bottom:12px;left:12px;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(232,180,32,0.4);
+  color:var(--gold2);
+  font-size:.7rem;font-weight:700;
+  padding:5px 12px;border-radius:8px;
+  display:flex;align-items:center;gap:6px;
 }
 
-/* Service Tabs Grid */
-.service-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
+/* Services Grid inside Card */
+.ai-services-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:8px;margin-bottom:14px;
 }
-.stab-card {
-  background: #171b24;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 12px 8px;
-  text-align: center;
-  transition: border-color 0.2s, background 0.2s;
+.ai-svc-item{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:10px 8px;
+  text-align:center;
 }
-.stab-card:hover {
-  border-color: rgba(201, 153, 10, 0.3);
-  background: #1e2330;
+.ai-svc-title{font-size:.8rem;font-weight:700;color:var(--gold2);display:block}
+.ai-svc-sub{font-size:.62rem;color:rgba(255,255,255,0.5);margin-top:2px;display:block;text-transform:uppercase}
+
+/* Filter Buttons Row */
+.ai-btns-row{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
 }
-.stab-title {
-  color: #e8b420;
-  font-size: 0.82rem;
-  font-weight: 700;
-  margin-bottom: 2px;
+.ai-filter-btn{
+  background:rgba(232,180,32,0.08);
+  border:1px solid rgba(232,180,32,0.3);
+  color:var(--gold2);
+  font-size:.75rem;font-weight:700;
+  padding:9px;border-radius:8px;
+  cursor:pointer;text-align:center;
+  transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
 }
-.stab-sub {
-  color: #8b949e;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.ai-filter-btn:hover{
+  background:var(--gold2);color:#000;
+  border-color:var(--gold2);
 }
 
-/* Action Pills */
-.action-buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-.act-btn {
-  background: transparent;
-  border: 1px solid rgba(201, 153, 10, 0.4);
-  color: #e8b420;
-  padding: 9px 6px;
-  border-radius: 10px;
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  transition: all 0.2s;
-}
-.act-btn:hover {
-  background: rgba(201, 153, 10, 0.15);
-  border-color: #e8b420;
+/* Sound Indicator Overlay */
+.sound-indicator{
+  position:absolute;top:12px;right:12px;
+  background:rgba(0,0,0,0.7);
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;font-size:.7rem;font-weight:600;
+  padding:4px 10px;border-radius:20px;
+  cursor:pointer;display:flex;align-items:center;gap:5px;
+  backdrop-filter:blur(4px);
+  z-index:10;
 }
 
 /* ════ SECTION ════ */
@@ -741,17 +698,11 @@ footer{
   .hero-cta-row{justify-content:center}
   .badges{justify-content:center}
   .feat-grid{grid-template-columns:1fr 1fr}
-  .ft:nth-child(3n){border-right:1px solid var(--border)}
-  .ft:nth-child(2n){border-right:none}
-  .ft:nth-child(4),.ft:nth-child(5),.ft:nth-child(6){border-bottom:1px solid var(--border)}
-  .ft:nth-child(5),.ft:nth-child(6){border-bottom:none}
   .price-grid,.form-grid{grid-template-columns:1fr;gap:40px}
   section{padding:70px 24px}
 }
 @media(max-width:560px){
   .feat-grid{grid-template-columns:1fr}
-  .ft{border-right:none!important}
-  .ft:not(:last-child){border-bottom:1px solid var(--border)!important}
   .chat-box{width:calc(100vw - 20px);right:10px}
   .ai-btn{right:14px;bottom:18px}
 }
@@ -796,50 +747,65 @@ footer{
       </div>
     </div>
 
-    <!-- HERO RIGHT: VIDEO PLAYER CARD (MATCHING IMAGE DESIGN) -->
+    <!-- RIGHT HERO: CHOTTUCHART AI LANDSCAPE VIDEO CARD -->
     <div class="hero-right">
-      <div class="ai-player-card">
-        <div class="player-header">
-          <div class="player-title">
-            <span class="bot-icon">🤖</span> CHOTTUCHART AI
+      <div class="ai-card">
+        <div class="ai-card-header">
+          <div class="ai-card-title">
+            <i class="fas fa-robot"></i> CHOTTUCHART AI
           </div>
-          <div class="live-badge">LIVE PRESENTATION</div>
+          <div class="ai-live-badge">
+            <span class="dot"></span> LIVE PRESENTATION
+          </div>
         </div>
 
-        <!-- VIDEO PLAYER WITH AUTOPLAY, MUTED, LOOP, PLAYSINLINE -->
-        <div class="video-container">
-          <video id="heroVideo" autoplay muted loop playsinline controls poster="">
-            <source src="hero-video.mp4" type="video/mp4">
+        <!-- Landscape 16:9 Video Player -->
+        <div class="video-wrapper">
+          <button class="sound-indicator" id="soundToggle" onclick="toggleMute()">
+            <i class="fas fa-volume-mute" id="soundIcon"></i>
+            <span id="soundText">Tap/Scroll to Unmute</span>
+          </button>
+
+          <video id="heroVideo" autoplay loop muted playsinline preload="auto">
             <source src="WhatsApp Video 2026-07-31 at 2.34.28 PM.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="WhatsApp Video 2026-07-31 at 2.32.54 PM.mp4" type="video/mp4">
+            Your browser does not support video playback.
           </video>
-          <div class="video-overlay-tag">
-            <i class="fas fa-user-tie"></i> Official Representative
+
+          <div class="video-tag-overlay">
+            <i class="fas fa-user-check"></i> Official Representative
           </div>
         </div>
 
-        <!-- SERVICE TABS -->
-        <div class="service-tabs">
-          <div class="stab-card">
-            <div class="stab-title">Trading</div>
-            <div class="stab-sub">Automated EA</div>
+        <!-- Services Highlight -->
+        <div class="ai-services-grid">
+          <div class="ai-svc-item">
+            <span class="ai-svc-title">Trading</span>
+            <span class="ai-svc-sub">Automated EA</span>
           </div>
-          <div class="stab-card">
-            <div class="stab-title">SEO</div>
-            <div class="stab-sub">Services</div>
+          <div class="ai-svc-item">
+            <span class="ai-svc-title">SEO</span>
+            <span class="ai-svc-sub">Services</span>
           </div>
-          <div class="stab-card">
-            <div class="stab-title">Web Dev</div>
-            <div class="stab-sub">Custom Sites</div>
+          <div class="ai-svc-item">
+            <span class="ai-svc-title">Web Dev</span>
+            <span class="ai-svc-sub">Custom Sites</span>
           </div>
         </div>
 
-        <!-- ACTION BUTTONS -->
-        <div class="action-buttons">
-          <a href="#pricing" class="act-btn"><i class="fas fa-chart-line"></i> Trading</a>
-          <a href="#leadform" class="act-btn"><i class="fas fa-search"></i> SEO</a>
-          <a href="#leadform" class="act-btn"><i class="fas fa-code"></i> Development</a>
+        <!-- Quick Action Buttons -->
+        <div class="ai-btns-row">
+          <button class="ai-filter-btn" onclick="scrollToSec('pricing')">
+            <i class="fas fa-chart-line"></i> Trading
+          </button>
+          <button class="ai-filter-btn" onclick="scrollToSec('features')">
+            <i class="fas fa-search"></i> SEO
+          </button>
+          <button class="ai-filter-btn" onclick="scrollToSec('leadform')">
+            <i class="fas fa-code"></i> Development
+          </button>
         </div>
+
       </div>
     </div>
 
@@ -881,7 +847,7 @@ footer{
       <div class="ft">
         <div class="ft-num">06</div>
         <h3>Dedicated Support</h3>
-        <p>Direct email support at chottuchart@gmail.com — response within 24 hours.</p>
+        <p>Direct email support — response within 24 hours.</p>
       </div>
     </div>
   </div>
@@ -1031,24 +997,56 @@ footer{
 </div>
 
 <script>
-// Auto-play video force script
-document.addEventListener('DOMContentLoaded', () => {
-  const video = document.getElementById('heroVideo');
-  if (video) {
-    video.muted = true;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log("Autoplay prevented, user interaction required:", error);
-      });
-    }
-  }
-});
-
+// Nav Scroll Styling
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
 });
 
+// Scroll Audio / Video Handling
+const video = document.getElementById('heroVideo');
+const soundIcon = document.getElementById('soundIcon');
+const soundText = document.getElementById('soundText');
+let hasInteracted = false;
+
+function enableAudio() {
+  if (video) {
+    video.muted = false;
+    video.play().catch(e => console.log('Autoplay audio policy blocked:', e));
+    soundIcon.className = 'fas fa-volume-up';
+    soundText.textContent = 'Audio On';
+    hasInteracted = true;
+  }
+}
+
+function toggleMute() {
+  if (!video) return;
+  if (video.muted) {
+    enableAudio();
+  } else {
+    video.muted = true;
+    soundIcon.className = 'fas fa-volume-mute';
+    soundText.textContent = 'Muted';
+  }
+}
+
+// Scroll Event: Automatically play audio/music when user scrolls down
+window.addEventListener('scroll', () => {
+  if (!hasInteracted && window.scrollY > 30) {
+    enableAudio();
+  }
+}, { passive: true });
+
+// Also trigger audio on user first click/touch on page
+document.addEventListener('click', () => {
+  if (!hasInteracted) enableAudio();
+}, { once: true });
+
+function scrollToSec(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// AI Chat Functions
 function toggleChat(){
   const b=document.getElementById('chatBox');
   if(b.classList.contains('open')){
