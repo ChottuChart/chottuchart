@@ -1,564 +1,872 @@
-Pure ultra-clean single-file HTML code ready ah irukku!
-
-Indha code-la **Hero Section-oda complete background-ah** indha video seamless-ah fit aagum. Page open aanadhume **sound-oda** play aaga start aagum, keele scroll panni ponaa **automatically mute aagum**, thirumbavum mela Hero section-ukku vandhaa **sound thirumbavum enable aagum**.
-
-*(Browser restriction kaaranamaa silarukku user touch/click panna udaney sound auto-enable aagura mathiri JS event backup-um add panni irukken).*
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chottu Chart EA</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-:root{
-  --gold:#c9990a;
-  --gold2:#e8b420;
-  --gold-bg:#fffbee;
-  --gold-border:#f0d87a;
-  --green:#0a6e45;
-  --ink:#0f1117;
-  --ink2:#374151;
-  --muted:#6b7280;
-  --border:#e5e7eb;
-  --soft:#f8f9fb;
-}
-body{
-  font-family:'Outfit',sans-serif;
-  background:#fff;
-  color:var(--ink);
-  overflow-x:hidden;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chottu Chart | Trading EA, SEO & Web Development</title>
 
-/* ════ NAV ════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:300;
-  height:64px;
-  background:rgba(15,17,23,0.75);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,0.12);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;
-  transition:all .3s;
-}
-nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.nav-brand{
-  display:flex;align-items:center;gap:10px;
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;font-weight:700;color:#fff;
-  text-decoration:none;
-}
-.nav-brand img{height:36px;width:36px;border-radius:50%;border:2px solid var(--gold2);object-fit:cover}
-.nav-right{display:flex;align-items:center;gap:12px}
-.nav-tag{
-  font-size:.78rem;font-weight:600;color:var(--gold2);
-  background:rgba(232,180,32,0.15);border:1px solid rgba(232,180,32,0.4);
-  padding:5px 14px;border-radius:100px;
-}
-.nav-btn{
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#000;font-size:.86rem;font-weight:700;
-  padding:9px 22px;border-radius:9px;
-  text-decoration:none;transition:transform .2s;
-}
-.nav-btn:hover{transform:translateY(-2px)}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-/* ════ HERO SECTION WITH FULL-SCREEN VIDEO ════ */
-.hero-full{
-  position:relative;
-  min-height:100vh;
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  padding:120px 48px 80px;
-}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-/* Seamless Full Background Video */
-.hero-video-bg{
-  position:absolute;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:1;
-}
+  <style>
+    /* ==========================================================================
+       RESET & GLOBAL STYLES
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #08080c;
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-/* Glass Dark Gradient Overlay for Crisp Text Readability */
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(15,17,23,0.55) 0%, rgba(15,17,23,0.75) 70%, rgba(15,17,23,1) 100%);
-  z-index:2;
-}
+    :root {
+      --gold: #c9990a;
+      --gold2: #e8b420;
+      --gold-bg: rgba(232, 180, 32, 0.08);
+      --gold-border: rgba(240, 216, 122, 0.4);
+      --ink: #08080c;
+      --ink-soft: #121620;
+      --border: rgba(255, 255, 255, 0.1);
+      --muted: #9ca3af;
+    }
 
-/* Hero Content Floating Above Video */
-.hero-content{
-  position:relative;
-  z-index:3;
-  max-width:920px;
-  text-align:center;
-  color:#fff;
-}
+    /* ==========================================================================
+       1. HERO SECTION (1st Video - Fullscreen Background)
+       ========================================================================== */
+    .hero-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5vw;
+    }
 
-.chip{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(232,180,32,0.15);border:1px solid rgba(232,180,32,0.4);
-  color:var(--gold2);font-size:.8rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;
-  padding:8px 20px;border-radius:100px;margin-bottom:24px;
-  backdrop-filter:blur(8px);
-}
-.chip-dot{
-  width:8px;height:8px;border-radius:50%;background:#4ade80;
-  animation:blink 1.5s infinite;
-}
-@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      pointer-events: none;
+      transform: scale(1.02);
+    }
 
-h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3.2rem,6vw,5.5rem);
-  font-weight:800;line-height:1.05;
-  letter-spacing:-.02em;
-  color:#fff;
-  margin-bottom:20px;
-  text-shadow:0 4px 20px rgba(0,0,0,0.6);
-}
-h1 .accent{
-  color:var(--gold2);
-  border-bottom:4px solid var(--gold2);
-}
-.hero-desc{
-  font-size:1.15rem;color:rgba(255,255,255,0.9);
-  line-height:1.7;max-width:700px;
-  margin:0 auto 36px;font-weight:400;
-  text-shadow:0 2px 10px rgba(0,0,0,0.5);
-}
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 8, 12, 0.6) 0%, rgba(8, 8, 12, 0.4) 50%, rgba(8, 8, 12, 0.85) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-.hero-cta-row{
-  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
-  margin-bottom:40px;
-}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:10px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#000;font-weight:800;font-size:1.05rem;
-  padding:16px 36px;border-radius:12px;
-  text-decoration:none;transition:transform .25s,box-shadow .25s;
-}
-.btn-primary:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 35px rgba(232,180,32,0.4);
-}
+    /* Transparent Glass Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(8, 8, 12, 0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(8, 8, 12, 0.92);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-bg);
+      color: var(--gold2);
+      font-weight: 800;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      color: #d1d5db;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--gold2);
+    }
+    .audio-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    .audio-toggle-btn:hover {
+      border-color: var(--gold2);
+      color: var(--gold2);
+    }
+    .audio-indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6b7280;
+    }
+    .audio-indicator-dot.active {
+      background: #4ade80;
+      box-shadow: 0 0 10px #4ade80;
+    }
 
-.price-pill{
-  display:flex;align-items:baseline;gap:4px;
-  background:rgba(0,0,0,0.65);
-  border:2px solid var(--gold2);
-  padding:12px 24px;border-radius:12px;
-  backdrop-filter:blur(10px);
-}
-.price-pill .sym{font-size:1.2rem;font-weight:700;color:var(--gold2)}
-.price-pill .amt{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.2rem;font-weight:800;color:var(--gold2);line-height:1;
-}
-.price-pill .note{
-  font-size:.72rem;color:rgba(255,255,255,0.7);
-  font-weight:600;letter-spacing:.05em;
-}
+    /* Hero Content Box */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+      margin-top: 40px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232, 180, 32, 0.12);
+      border: 1px solid var(--gold-border);
+      padding: 6px 16px;
+      border-radius: 100px;
+      color: var(--gold2);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 24px;
+    }
+    .hero-badge .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold2);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
 
-/* Sound Indicator Widget */
-.sound-indicator{
-  position:absolute;bottom:30px;right:48px;
-  background:rgba(0,0,0,0.75);
-  border:1px solid rgba(255,255,255,0.25);
-  color:#fff;font-size:.8rem;font-weight:600;
-  padding:8px 18px;border-radius:30px;
-  cursor:pointer;display:flex;align-items:center;gap:8px;
-  backdrop-filter:blur(8px);
-  z-index:10;
-  transition:all .2s;
-}
-.sound-indicator:hover{background:var(--gold2);color:#000}
+    h1.hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .accent-gradient {
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold2) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: #d1d5db;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 650px;
+      margin-bottom: 36px;
+    }
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      color: #000;
+      font-weight: 800;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(232, 180, 32, 0.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(232, 180, 32, 0.5);
+    }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+    }
 
-/* ════ SECTIONS ════ */
-section{padding:90px 48px}
-.wrap{max-width:1160px;margin:auto}
-.stag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:.72rem;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gold);
-  margin-bottom:10px;
-}
-.stag::before{content:'';width:22px;height:2px;background:var(--gold);border-radius:2px}
-.sh{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.9rem,3.5vw,2.8rem);
-  font-weight:800;line-height:1.08;letter-spacing:-.025em;
-  margin-bottom:14px;
-}
-.ss{font-size:.98rem;color:var(--muted);line-height:1.72;max-width:480px;margin-bottom:52px}
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .scroll-text {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #9ca3af;
+      font-weight: 700;
+    }
+    .scroll-mouse {
+      width: 20px;
+      height: 34px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+    .scroll-wheel {
+      width: 3px;
+      height: 6px;
+      background: var(--gold2);
+      border-radius: 2px;
+      animation: scrollMove 1.8s infinite;
+    }
+    @keyframes scrollMove {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
 
-/* FEATURES */
-#features{background:var(--soft)}
-.feat-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border:1px solid var(--border);border-radius:20px;
-  overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,.05);
-}
-.ft{
-  background:#fff;padding:34px 28px;
-  border-right:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  transition:background .25s;cursor:default;
-}
-.ft:nth-child(3n){border-right:none}
-.ft:nth-child(4),.ft:nth-child(5),.ft:nth-child(6){border-bottom:none}
-.ft:hover{background:var(--gold-bg)}
-.ft-num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:3rem;font-weight:800;
-  color:var(--border);line-height:1;margin-bottom:16px;
-}
-.ft h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;margin-bottom:9px;color:var(--ink)}
-.ft p{font-size:.87rem;color:var(--muted);line-height:1.65}
+    /* ==========================================================================
+       2. SERVICES SECTION (Trading EA, SEO, Website Development)
+       ========================================================================== */
+    section {
+      padding: 100px 5vw;
+      position: relative;
+    }
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 12px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 22px;
+      height: 2px;
+      background: var(--gold2);
+    }
+    .section-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 580px;
+      margin-bottom: 56px;
+    }
 
-/* PRICING */
-#pricing{background:#fff}
-.price-grid{
-  display:grid;grid-template-columns:1fr 400px;
-  gap:64px;align-items:center;
-}
-.check-list{list-style:none;display:flex;flex-direction:column;gap:13px}
-.check-list li{display:flex;align-items:center;gap:11px;font-size:.91rem;color:var(--ink2)}
-.check-list li i{color:var(--green)}
+    #services { background: #0c0f17; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .srv-card {
+      background: var(--ink-soft);
+      border: 1px solid var(--border);
+      padding: 40px 30px;
+      border-radius: 20px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .srv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .srv-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .srv-card:hover::before { opacity: 1; }
+    .srv-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(232, 180, 32, 0.1);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold2);
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+    .srv-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .srv-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .srv-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .srv-list li {
+      font-size: 0.84rem;
+      color: #d1d5db;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .srv-list li i {
+      color: var(--gold2);
+      font-size: 0.75rem;
+    }
 
-.price-card{
-  background:var(--ink);color:#fff;
-  border-radius:24px;padding:40px;
-  position:relative;overflow:hidden;
-}
-.price-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:5px;
-  background:linear-gradient(90deg,var(--gold),var(--gold2));
-}
-.pc-lbl{
-  display:inline-block;
-  background:rgba(201,153,10,.18);border:1px solid rgba(201,153,10,.35);
-  color:var(--gold2);font-size:.72rem;font-weight:700;
-  padding:5px 14px;border-radius:100px;margin-bottom:22px;
-}
-.pc-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:800;margin-bottom:6px}
-.pc-price-row{display:flex;align-items:flex-end;gap:4px;margin-bottom:16px}
-.pc-cur{font-size:1.4rem;font-weight:700;color:var(--gold2)}
-.pc-amount{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:800;color:var(--gold2);line-height:1}
-.pc-btn{
-  display:block;text-align:center;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:#000;font-weight:800;font-size:.97rem;
-  padding:16px;border-radius:12px;text-decoration:none;
-}
+    /* ==========================================================================
+       3. PRICING SECTION
+       ========================================================================== */
+    #pricing { background: #08080c; }
+    .price-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+    }
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #d1d5db;
+      font-size: 0.95rem;
+    }
+    .check-list li i {
+      color: var(--gold2);
+    }
+    .price-card {
+      background: var(--ink-soft);
+      border: 1px solid var(--gold-border);
+      border-radius: 24px;
+      padding: 44px;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 24px 24px 0 0;
+    }
+    .price-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--gold2);
+      line-height: 1;
+      margin: 16px 0 8px;
+    }
 
-/* FORM */
-#leadform{background:var(--soft)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
-.fbox{background:#fff;border:1px solid var(--border);border-radius:20px;padding:36px}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:.74rem;font-weight:700;color:var(--ink2);margin-bottom:6px}
-.field input,.field textarea{
-  width:100%;padding:12px;border:1.5px solid var(--border);
-  border-radius:9px;outline:none;font-family:'Outfit',sans-serif;
-}
-.btn-submit{
-  width:100%;padding:15px;background:var(--ink);color:#fff;
-  font-weight:700;border:none;border-radius:10px;cursor:pointer;
-}
+    /* ==========================================================================
+       4. LEAD FORM
+       ========================================================================== */
+    #leadform { background: #0c0f17; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    .form-box {
+      background: var(--ink-soft);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 20px;
+    }
+    .field {
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d1d5db;
+      margin-bottom: 6px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: #08080c;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--gold2);
+    }
 
-/* FOOTER */
-footer{
-  background:var(--ink);padding:48px;
-  color:#fff;text-align:center;
-}
-.footer-video-wrapper{
-  max-width:500px;margin:0 auto 24px;
-  aspect-ratio:16/9;border-radius:12px;overflow:hidden;
-  border:1px solid rgba(255,255,255,0.15);
-}
-.footer-video-wrapper video{width:100%;height:100%;object-fit:cover}
+    /* ==========================================================================
+       5. FOOTER SECTION WITH 2ND VIDEO SHOWCASE
+       ========================================================================== */
+    .footer-wrapper {
+      background: #040508;
+      border-top: 1px solid var(--border);
+    }
+    .footer-video-section {
+      padding: 80px 5vw 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-video-container {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      position: relative;
+      margin-top: 24px;
+    }
+    .footer-video-container video {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+    }
 
-/* AI BOT */
-.ai-btn{
-  position:fixed;bottom:26px;right:26px;
-  width:60px;height:60px;
-  background:#1a1a2e;border-radius:18px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:999;border:1.5px solid rgba(201,153,10,.3);
-  color:#fff;font-size:22px;
-}
-.chat-box{
-  position:fixed;bottom:102px;right:26px;
-  width:348px;background:#fff;border-radius:22px;
-  box-shadow:0 32px 80px rgba(0,0,0,.18);
-  display:none;flex-direction:column;overflow:hidden;z-index:999;
-}
-.chat-box.open{display:flex}
-.ch-head{background:#1a1a2e;padding:14px;color:#fff;display:flex;justify-content:space-between}
-.ch-body{padding:14px;height:240px;overflow-y:auto;background:var(--soft)}
-.msg{padding:10px 14px;border-radius:16px;font-size:.84rem;margin-bottom:6px}
-.msg.user{background:#1a1a2e;color:#fff;align-self:flex-end}
-.msg.bot{background:#fff;border:1px solid var(--border)}
-.ch-inp{display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid var(--border)}
-.ch-inp input{flex:1;padding:8px;border:1px solid var(--border);border-radius:8px}
+    footer {
+      padding: 30px 5vw;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
 
-@media(max-width:960px){
-  .feat-grid,.price-grid,.form-grid{grid-template-columns:1fr}
-  section,.hero-full{padding-left:20px;padding-right:20px}
-}
-</style>
+    /* Floating Chatbot */
+    .ai-btn {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(232, 180, 32, 0.4);
+      z-index: 999;
+      color: #000;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .services-grid, .price-layout, .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a class="nav-brand" href="#">
-    <img src="https://lh3.googleusercontent.com/a/ACg8ocI3meF1bQ7z4X02tIq-8Mceov6eGZknAatZrujfN3NzbCIz5WA=s288-c-no" alt="logo">
-    Chottu Chart EA
-  </a>
-  <div class="nav-right">
-    <span class="nav-tag">$250 Lifetime</span>
-    <a href="#leadform" class="nav-btn">Get EA ↗</a>
-  </div>
-</nav>
-
-<!-- FULL HERO SECTION WITH UNMUTED AUTOPLAY BACKGROUND VIDEO -->
-<section class="hero-full" id="heroSec">
-  <!-- Full Background Video - Loop Enabled -->
-  <video class="hero-video-bg" id="heroVideo" autoplay loop playsinline preload="auto">
-    <source src="WhatsApp Video 2026-07-31 at 2.34.28 PM.mp4" type="video/mp4">
-  </video>
-  
-  <!-- Overlay Darkness for Clean Text Contrast -->
-  <div class="hero-overlay"></div>
-
-  <!-- Hero Content Overlay -->
-  <div class="hero-content">
-    <div class="chip"><span class="chip-dot"></span> Smart Automated Trading & AI Services</div>
-    <h1>Trade Smarter.<br>Win with <span class="accent">Chottu</span> Chart EA</h1>
-    <p class="hero-desc">Professional Forex Expert Advisor, Premium SEO Services, and Custom Web Development — Built for High Performance and Ultimate Results.</p>
-    
-    <div class="hero-cta-row">
-      <a href="#leadform" class="btn-primary"><i class="fas fa-rocket"></i> Get EA Now</a>
-      <div class="price-pill">
-        <span class="sym">$</span>
-        <span class="amt">250</span>
-        <span class="note">ONE-TIME</span>
-      </div>
+  <nav id="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-logo">Æ</div>
+      CHOTTU CHART
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#leadform">Contact</a>
     </div>
-  </div>
+    <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleAudioExplicitly()">
+      <span class="audio-indicator-dot" id="audioDot"></span>
+      <span id="audioText">Sound Off</span>
+    </button>
+  </nav>
 
-  <!-- Sound Toggle Control -->
-  <button class="sound-indicator" id="soundToggle" onclick="toggleMuteManual()">
-    <i class="fas fa-volume-up" id="soundIcon"></i>
-    <span id="soundText">Sound On</span>
-  </button>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="wrap">
-    <div class="stag">What You Get</div>
-    <h2 class="sh">Built for Traders<br>Who Want Results</h2>
-    <p class="ss">Advanced EA with everything you need — from zero-effort automation to bulletproof risk control.</p>
-    <div class="feat-grid">
-      <div class="ft"><div class="ft-num">01</div><h3>Automated Trading</h3><p>100% hands-free. Advanced algorithms trade for you 24/7 while you focus on life.</p></div>
-      <div class="ft"><div class="ft-num">02</div><h3>Proven Strategy</h3><p>Backtested & optimized for consistent performance across all market conditions.</p></div>
-      <div class="ft"><div class="ft-num">03</div><h3>Risk Management</h3><p>Built-in stop loss, take profit & drawdown control. Capital protection first.</p></div>
-      <div class="ft"><div class="ft-num">04</div><h3>Lifetime Access</h3><p>Pay once at $250 — no expiry, no subscription, no hidden fees.</p></div>
-      <div class="ft"><div class="ft-num">05</div><h3>Easy Installation</h3><p>Works on MT4 & MT5. Full step-by-step setup support provided.</p></div>
-      <div class="ft"><div class="ft-num">06</div><h3>Dedicated Support</h3><p>Direct email support with fast responses.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="wrap">
-    <div class="price-grid">
-      <div>
-        <div class="stag">Pricing</div>
-        <h2 class="sh">One Price.<br>Lifetime Value.</h2>
-        <p>No monthly fees. Pay $250 once and get full lifetime access with all future updates included.</p>
-        <br>
-        <ul class="check-list">
-          <li><i class="fas fa-check"></i> Full EA file — MT4 & MT5 compatible</li>
-          <li><i class="fas fa-check"></i> Optimized for XAU/USD (Gold)</li>
-          <li><i class="fas fa-check"></i> Stop loss & drawdown protection</li>
-          <li><i class="fas fa-check"></i> Lifetime access — no expiry</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <div class="pc-lbl">⭐ Best Value</div>
-        <div class="pc-name">Chottu Chart EA</div>
-        <div class="pc-price-row">
-          <span class="pc-cur">$</span>
-          <span class="pc-amount">250</span>
-        </div>
-        <a href="#leadform" class="pc-btn">Get EA for $250 →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FORM -->
-<section id="leadform">
-  <div class="wrap">
-    <div class="form-grid">
-      <div>
-        <div class="stag">Enquiry</div>
-        <h2 class="sh">Get Started Today</h2>
-        <p>Fill the form and our team will reach out with payment details and the EA file within 24 hours.</p>
-      </div>
-      <div class="fbox">
-        <form action="https://formsubmit.co/chottuchart@gmail.com" method="POST">
-          <input type="hidden" name="_captcha" value="false">
-          <div class="field"><label>Name</label><input type="text" name="name" required></div>
-          <div class="field"><label>Email</label><input type="email" name="email" required></div>
-          <div class="field"><label>WhatsApp</label><input type="text" name="whatsapp" required></div>
-          <button type="submit" class="btn-submit">Submit Enquiry</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-video-wrapper">
-    <video autoplay loop muted playsinline preload="auto">
-      <source src="WhatsApp Video 2026-07-31 at 2.32.54 PM.mp4" type="video/mp4">
+  <div class="hero-container" id="heroSection">
+    <video
+      id="heroVideo"
+      class="hero-video"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      controlsList="nodownload nofullscreen noremoteplayback"
+      disablePictureInPicture
+    >
+      <source src="WhatsApp Video 2026-07-31 at 2.34.28 PM.mp4" type="video/mp4" />
+      Your browser does not support video playback.
     </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge">
+        <span class="pulse-dot"></span>
+        Trading EA · Premium SEO · Website Development
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">
+        Empowering Digital Growth.<br />
+        <span class="accent-gradient">Built For Success.</span>
+      </h1>
+
+      <p class="hero-subtitle" id="heroSubtitle">
+        Official digital solutions hub providing institutional Automated Trading EA for Gold (XAU/USD), Premium SEO Services, and Custom Website Development.
+      </p>
+
+      <div class="hero-cta-group" id="heroCta">
+        <a href="#leadform" class="btn-gold">Get Started Today</a>
+        <a href="#services" class="btn-glass">Our Services</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
   </div>
-  <p>© 2026 Chottu Chart EA · chottuchart@gmail.com</p>
-</footer>
 
-<!-- AI BOT -->
-<div class="ai-btn" onclick="toggleChat()">🤖</div>
-<div class="chat-box" id="chatBox">
-  <div class="ch-head"><span>Chottu AI Bot</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div>
-  <div class="ch-body" id="chatBody"><div class="msg bot">👋 Hi! Ask me anything about Chottu Chart EA!</div></div>
-  <div class="ch-inp">
-    <input id="chatInput" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendMsg()">
-    <button onclick="sendMsg()">Send</button>
+  <section id="services">
+    <div class="wrap">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-head">Complete Digital Solutions</h2>
+      <p class="section-sub">From automated forex execution to search engine dominance and custom web applications.</p>
+
+      <div class="services-grid">
+        <div class="srv-card">
+          <div class="srv-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Automated Trading EA</h3>
+          <p>Institutional-grade Expert Advisor engineered for XAU/USD (Gold) pairs on MT4 & MT5.</p>
+          <ul class="srv-list">
+            <li><i class="fas fa-check"></i> 100% Autonomous Execution</li>
+            <li><i class="fas fa-check"></i> Hard Stop Loss & Risk Control</li>
+            <li><i class="fas fa-check"></i> $250 One-time Lifetime Pass</li>
+          </ul>
+        </div>
+
+        <div class="srv-card">
+          <div class="srv-icon"><i class="fas fa-magnifying-glass-dollar"></i></div>
+          <h3>Premium SEO Services</h3>
+          <p>Rank your website on Google #1 page with white-hat technical and content strategies.</p>
+          <ul class="srv-list">
+            <li><i class="fas fa-check"></i> On-Page & Technical Audit</li>
+            <li><i class="fas fa-check"></i> High-Authority Backlink Building</li>
+            <li><i class="fas fa-check"></i> Organic Lead Growth</li>
+          </ul>
+        </div>
+
+        <div class="srv-card">
+          <div class="srv-icon"><i class="fas fa-code"></i></div>
+          <h3>Website Development</h3>
+          <p>Ultra-fast, responsive, modern websites and web apps crafted for high conversions.</p>
+          <ul class="srv-list">
+            <li><i class="fas fa-check"></i> Custom Next.js / React / HTML</li>
+            <li><i class="fas fa-check"></i> Mobile & Speed Optimized</li>
+            <li><i class="fas fa-check"></i> UI/UX Design Excellence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="price-layout">
+        <div>
+          <div class="section-tag">Trading EA Pricing</div>
+          <h2 class="section-head">One Payment.<br />Lifetime Trading Pass.</h2>
+          <p class="section-sub">Get direct access to our flagship Gold Automated Trading Robot with lifetime updates.</p>
+
+          <ul class="check-list">
+            <li><i class="fas fa-check-circle"></i> Complete MT4 & MT5 EA Files</li>
+            <li><i class="fas fa-check-circle"></i> Pre-configured Gold (XAU/USD) Presets</li>
+            <li><i class="fas fa-check-circle"></i> Lifetime License & Future Updates</li>
+            <li><i class="fas fa-check-circle"></i> Step-by-Step Setup Guide & Support</li>
+          </ul>
+        </div>
+
+        <div class="price-card">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--gold2); text-transform: uppercase;">Lifetime EA Access</div>
+          <div class="price-val">$250</div>
+          <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 24px;">One-time fee · Zero monthly subscriptions</p>
+          <a href="#leadform" class="btn-gold" style="display: block; text-align: center; width: 100%;">Get EA File Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadform">
+    <div class="wrap">
+      <div class="form-grid">
+        <div>
+          <div class="section-tag">Contact Us</div>
+          <h2 class="section-head">Let's Work Together</h2>
+          <p class="section-sub">Fill out the form for Trading EA purchase, SEO inquiries, or custom Website Development projects.</p>
+          <p style="color: var(--gold2); font-weight: 600;"><i class="fas fa-envelope"></i> chottuchart@gmail.com</p>
+        </div>
+
+        <div class="form-box">
+          <form action="https://formsubmit.co/chottuchart@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="field">
+              <label>Your Name</label>
+              <input type="text" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="you@email.com" required />
+            </div>
+            <div class="field">
+              <label>Service Required</label>
+              <select name="service_type" required>
+                <option value="Trading EA ($250)">Trading EA ($250 Lifetime)</option>
+                <option value="SEO Services">SEO Services</option>
+                <option value="Website Development">Website Development</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>WhatsApp Number</label>
+              <input type="text" name="whatsapp" placeholder="+1 234 567 890" required />
+            </div>
+            <button type="submit" class="btn-gold" style="width: 100%; border: none; cursor: pointer; margin-top: 10px;">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-wrapper">
+    <div class="footer-video-section">
+      <div class="section-tag">Official Presentation</div>
+      <h2 class="section-head" style="font-size: 2rem;">Discover Chottu Chart Capabilities</h2>
+      <p style="color: var(--muted); font-size: 0.9rem;">Watch our official overview of Trading EA, SEO, and Development services.</p>
+
+      <div class="footer-video-container">
+        <video
+          id="footerVideo"
+          controls
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        >
+          <source src="WhatsApp Video 2026-07-31 at 2.32.54 PM.mp4" type="video/mp4" />
+          Your browser does not support video playback.
+        </video>
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2026 Chottu Chart. All rights reserved.</div>
+      <div>Official Contact: chottuchart@gmail.com</div>
+    </footer>
   </div>
-</div>
 
-<script>
-const heroVideo = document.getElementById('heroVideo');
-const soundIcon = document.getElementById('soundIcon');
-const soundText = document.getElementById('soundText');
-const heroSec = document.getElementById('heroSec');
+  <div class="ai-btn" onclick="alert('Welcome to Chottu Chart! Contact chottuchart@gmail.com for Trading EA, SEO, or Web Development.')">
+    <i class="fas fa-robot"></i>
+  </div>
 
-// Attempt Unmuted Audio Playback Immediately
-function startUnmutedVideo() {
-  if (heroVideo) {
-    heroVideo.muted = false;
-    const playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        updateSoundUI(true);
-      }).catch(() => {
-        // Fallback for strict browser autoplay policies until initial click/tap
-        heroVideo.muted = true;
-        heroVideo.play();
-        updateSoundUI(false);
+  <script>
+    const video = document.getElementById('heroVideo');
+    const heroSection = document.getElementById('heroSection');
+    const audioDot = document.getElementById('audioDot');
+    const audioText = document.getElementById('audioText');
+    const navbar = document.getElementById('navbar');
+
+    let hasUserInteracted = false;
+
+    function updateAudioUI(isMuted) {
+      if (!isMuted) {
+        audioDot.classList.add('active');
+        audioText.textContent = 'Sound On';
+      } else {
+        audioDot.classList.remove('active');
+        audioText.textContent = 'Sound Off';
+      }
+    }
+
+    function toggleAudioExplicitly() {
+      if (!video) return;
+      hasUserInteracted = true;
+      if (video.muted) {
+        video.muted = false;
+        video.play();
+        updateAudioUI(false);
+      } else {
+        video.muted = true;
+        updateAudioUI(true);
+      }
+    }
+
+    document.addEventListener('click', () => {
+      if (!hasUserInteracted && window.scrollY < 100) {
+        hasUserInteracted = true;
+        video.muted = false;
+        video.play().then(() => updateAudioUI(false)).catch(() => updateAudioUI(true));
+      }
+    }, { once: true });
+
+    let isHeroVisible = true;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+        if (!entry.isIntersecting) {
+          video.muted = true;
+          updateAudioUI(true);
+        }
       });
-    }
-  }
-}
+    }, { threshold: 0.5 });
 
-// Ensure Sound Turns On Upon Any First Screen Interaction
-const enableAudioOnInteraction = () => {
-  if (heroVideo && heroVideo.muted) {
-    heroVideo.muted = false;
-    updateSoundUI(true);
-  }
-};
+    observer.observe(heroSection);
 
-window.addEventListener('click', enableAudioOnInteraction, { once: true });
-window.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
-window.addEventListener('scroll', enableAudioOnInteraction, { once: true });
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
 
-function updateSoundUI(isUnmuted) {
-  if (isUnmuted) {
-    soundIcon.className = 'fas fa-volume-up';
-    soundText.textContent = 'Sound On';
-  } else {
-    soundIcon.className = 'fas fa-volume-mute';
-    soundText.textContent = 'Sound Off';
-  }
-}
+      if (window.scrollY <= 30 && isHeroVisible) {
+        if (hasUserInteracted && video.muted) {
+          video.muted = false;
+          updateAudioUI(false);
+        }
+      } else {
+        if (!video.muted) {
+          video.muted = true;
+          updateAudioUI(true);
+        }
+      }
+    }, { passive: true });
 
-function toggleMuteManual() {
-  heroVideo.muted = !heroVideo.muted;
-  updateSoundUI(!heroVideo.muted);
-}
-
-// AUTOMATIC MUTE ON SCROLL DOWN / UNMUTE ON SCROLL BACK TO HERO
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-
-  const heroRect = heroSec.getBoundingClientRect();
-  // Check if Hero Section is visible on screen
-  const isHeroVisible = heroRect.bottom > 120 && heroRect.top < window.innerHeight;
-
-  if (isHeroVisible) {
-    // Unmute when in Hero Section
-    if (heroVideo.muted) {
-      heroVideo.muted = false;
-      updateSoundUI(true);
-    }
-  } else {
-    // Mute automatically when scrolled away
-    if (!heroVideo.muted) {
-      heroVideo.muted = true;
-      updateSoundUI(false);
-    }
-  }
-});
-
-window.addEventListener('DOMContentLoaded', startUnmutedVideo);
-
-function toggleChat(){ document.getElementById('chatBox').classList.toggle('open'); }
-
-function sendMsg(){
-  const inp=document.getElementById('chatInput');
-  const body=document.getElementById('chatBody');
-  if(!inp.value.trim())return;
-
-  const ub=document.createElement('div');
-  ub.className='msg user';
-  ub.textContent=inp.value;
-  body.appendChild(ub);
-  inp.value='';
-
-  setTimeout(()=>{
-    const rb=document.createElement('div');
-    rb.className='msg bot';
-    rb.textContent = "Thank you for asking! For pricing or setup assistance, drop an enquiry below.";
-    body.appendChild(rb);
-    body.scrollTop=body.scrollHeight;
-  },400);
-}
-</script>
-
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.from('#heroBadge', { opacity: 0, y: 30, duration: 1, delay: 0.2 });
+      gsap.from('#heroTitle', { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+      gsap.from('#heroSubtitle', { opacity: 0, y: 30, duration: 1, delay: 0.6 });
+      gsap.from('#heroCta', { opacity: 0, y: 20, duration: 0.8, delay: 0.8 });
+      gsap.from('#scrollIndicator', { opacity: 0, duration: 1, delay: 1 });
+    });
+  </script>
 </body>
 </html>
-
-```
