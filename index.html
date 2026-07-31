@@ -1,3 +1,10 @@
+Pure ultra-clean single-file HTML code ready ah irukku!
+
+Indha code-la **Hero Section-oda complete background-ah** indha video seamless-ah fit aagum. Page open aanadhume **sound-oda** play aaga start aagum, keele scroll panni ponaa **automatically mute aagum**, thirumbavum mela Hero section-ukku vandhaa **sound thirumbavum enable aagum**.
+
+*(Browser restriction kaaranamaa silarukku user touch/click panna udaney sound auto-enable aagura mathiri JS event backup-um add panni irukken).*
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,14 +39,14 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:300;
   height:64px;
-  background:rgba(15,17,23,0.85);
+  background:rgba(15,17,23,0.75);
   backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.12);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 48px;
   transition:all .3s;
 }
-nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.4)}
 .nav-brand{
   display:flex;align-items:center;gap:10px;
   font-family:'Cormorant Garamond',serif;
@@ -61,7 +68,7 @@ nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.3)
 }
 .nav-btn:hover{transform:translateY(-2px)}
 
-/* ════ FULL HERO SECTION WITH VIDEO BACKGROUND ════ */
+/* ════ HERO SECTION WITH FULL-SCREEN VIDEO ════ */
 .hero-full{
   position:relative;
   min-height:100vh;
@@ -73,28 +80,29 @@ nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.3)
   padding:120px 48px 80px;
 }
 
-/* Video Background Full Fit */
+/* Seamless Full Background Video */
 .hero-video-bg{
   position:absolute;
   top:0;left:0;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   object-fit:cover;
   z-index:1;
 }
 
-/* Dark Overlay for Text Visibility */
+/* Glass Dark Gradient Overlay for Crisp Text Readability */
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(15,17,23,0.75) 0%, rgba(15,17,23,0.85) 60%, rgba(15,17,23,1) 100%);
+  background:linear-gradient(180deg, rgba(15,17,23,0.55) 0%, rgba(15,17,23,0.75) 70%, rgba(15,17,23,1) 100%);
   z-index:2;
 }
 
-/* Content Container over Video */
+/* Hero Content Floating Above Video */
 .hero-content{
   position:relative;
   z-index:3;
-  max-width:900px;
+  max-width:920px;
   text-align:center;
   color:#fff;
 }
@@ -105,6 +113,7 @@ nav.scrolled{background:rgba(15,17,23,0.95);box-shadow:0 4px 20px rgba(0,0,0,.3)
   color:var(--gold2);font-size:.8rem;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;
   padding:8px 20px;border-radius:100px;margin-bottom:24px;
+  backdrop-filter:blur(8px);
 }
 .chip-dot{
   width:8px;height:8px;border-radius:50%;background:#4ade80;
@@ -119,16 +128,17 @@ h1{
   letter-spacing:-.02em;
   color:#fff;
   margin-bottom:20px;
-  text-shadow:0 4px 20px rgba(0,0,0,0.5);
+  text-shadow:0 4px 20px rgba(0,0,0,0.6);
 }
 h1 .accent{
   color:var(--gold2);
   border-bottom:4px solid var(--gold2);
 }
 .hero-desc{
-  font-size:1.15rem;color:rgba(255,255,255,0.85);
-  line-height:1.7;max-width:680px;
+  font-size:1.15rem;color:rgba(255,255,255,0.9);
+  line-height:1.7;max-width:700px;
   margin:0 auto 36px;font-weight:400;
+  text-shadow:0 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero-cta-row{
@@ -149,7 +159,7 @@ h1 .accent{
 
 .price-pill{
   display:flex;align-items:baseline;gap:4px;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.65);
   border:2px solid var(--gold2);
   padding:12px 24px;border-radius:12px;
   backdrop-filter:blur(10px);
@@ -164,13 +174,13 @@ h1 .accent{
   font-weight:600;letter-spacing:.05em;
 }
 
-/* Sound Indicator Button overlay */
+/* Sound Indicator Widget */
 .sound-indicator{
   position:absolute;bottom:30px;right:48px;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.75);
   border:1px solid rgba(255,255,255,0.25);
   color:#fff;font-size:.8rem;font-weight:600;
-  padding:8px 16px;border-radius:30px;
+  padding:8px 18px;border-radius:30px;
   cursor:pointer;display:flex;align-items:center;gap:8px;
   backdrop-filter:blur(8px);
   z-index:10;
@@ -327,17 +337,17 @@ footer{
   </div>
 </nav>
 
-<!-- FULL HERO SECTION WITH INTEGRATED BACKGROUND VIDEO -->
+<!-- FULL HERO SECTION WITH UNMUTED AUTOPLAY BACKGROUND VIDEO -->
 <section class="hero-full" id="heroSec">
-  <!-- Full Background Video -->
-  <video class="hero-video-bg" id="heroVideo" autoplay loop muted playsinline preload="auto">
+  <!-- Full Background Video - Loop Enabled -->
+  <video class="hero-video-bg" id="heroVideo" autoplay loop playsinline preload="auto">
     <source src="WhatsApp Video 2026-07-31 at 2.34.28 PM.mp4" type="video/mp4">
   </video>
   
-  <!-- Overlay Darkness for Text Readability -->
+  <!-- Overlay Darkness for Clean Text Contrast -->
   <div class="hero-overlay"></div>
 
-  <!-- Hero Content -->
+  <!-- Hero Content Overlay -->
   <div class="hero-content">
     <div class="chip"><span class="chip-dot"></span> Smart Automated Trading & AI Services</div>
     <h1>Trade Smarter.<br>Win with <span class="accent">Chottu</span> Chart EA</h1>
@@ -355,8 +365,8 @@ footer{
 
   <!-- Sound Toggle Control -->
   <button class="sound-indicator" id="soundToggle" onclick="toggleMuteManual()">
-    <i class="fas fa-volume-mute" id="soundIcon"></i>
-    <span id="soundText">Sound Off</span>
+    <i class="fas fa-volume-up" id="soundIcon"></i>
+    <span id="soundText">Sound On</span>
   </button>
 </section>
 
@@ -455,64 +465,75 @@ const soundIcon = document.getElementById('soundIcon');
 const soundText = document.getElementById('soundText');
 const heroSec = document.getElementById('heroSec');
 
-let userHasInteracted = false;
-
-// Sound Control Logic
-function unmuteVideo() {
-  if (heroVideo && heroVideo.muted) {
+// Attempt Unmuted Audio Playback Immediately
+function startUnmutedVideo() {
+  if (heroVideo) {
     heroVideo.muted = false;
-    heroVideo.play().then(() => {
-      soundIcon.className = 'fas fa-volume-up';
-      soundText.textContent = 'Sound On';
-    }).catch(e => console.log('Autoplay restriction:', e));
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        updateSoundUI(true);
+      }).catch(() => {
+        // Fallback for strict browser autoplay policies until initial click/tap
+        heroVideo.muted = true;
+        heroVideo.play();
+        updateSoundUI(false);
+      });
+    }
   }
 }
 
-function muteVideo() {
-  if (heroVideo) {
-    heroVideo.muted = true;
+// Ensure Sound Turns On Upon Any First Screen Interaction
+const enableAudioOnInteraction = () => {
+  if (heroVideo && heroVideo.muted) {
+    heroVideo.muted = false;
+    updateSoundUI(true);
+  }
+};
+
+window.addEventListener('click', enableAudioOnInteraction, { once: true });
+window.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
+window.addEventListener('scroll', enableAudioOnInteraction, { once: true });
+
+function updateSoundUI(isUnmuted) {
+  if (isUnmuted) {
+    soundIcon.className = 'fas fa-volume-up';
+    soundText.textContent = 'Sound On';
+  } else {
     soundIcon.className = 'fas fa-volume-mute';
     soundText.textContent = 'Sound Off';
   }
 }
 
 function toggleMuteManual() {
-  if (heroVideo.muted) {
-    unmuteVideo();
-    userHasInteracted = true;
-  } else {
-    muteVideo();
-  }
+  heroVideo.muted = !heroVideo.muted;
+  updateSoundUI(!heroVideo.muted);
 }
 
-// User First Action Trigger
-const enableAudioOnUserAction = () => {
-  if (!userHasInteracted) {
-    unmuteVideo();
-    userHasInteracted = true;
-  }
-};
-
-window.addEventListener('click', enableAudioOnUserAction, { once: true });
-window.addEventListener('touchstart', enableAudioOnUserAction, { once: true });
-
-// Auto Mute on Scroll Away from Hero
+// AUTOMATIC MUTE ON SCROLL DOWN / UNMUTE ON SCROLL BACK TO HERO
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
 
   const heroRect = heroSec.getBoundingClientRect();
-  const isHeroVisible = heroRect.bottom > 100 && heroRect.top < window.innerHeight;
+  // Check if Hero Section is visible on screen
+  const isHeroVisible = heroRect.bottom > 120 && heroRect.top < window.innerHeight;
 
   if (isHeroVisible) {
-    if (userHasInteracted && heroVideo.muted) {
-      unmuteVideo();
+    // Unmute when in Hero Section
+    if (heroVideo.muted) {
+      heroVideo.muted = false;
+      updateSoundUI(true);
     }
   } else {
+    // Mute automatically when scrolled away
     if (!heroVideo.muted) {
-      muteVideo();
+      heroVideo.muted = true;
+      updateSoundUI(false);
     }
   }
 });
+
+window.addEventListener('DOMContentLoaded', startUnmutedVideo);
 
 function toggleChat(){ document.getElementById('chatBox').classList.toggle('open'); }
 
@@ -539,3 +560,5 @@ function sendMsg(){
 
 </body>
 </html>
+
+```
