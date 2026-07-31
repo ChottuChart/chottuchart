@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chottu Chart EA</title>
+<title>Chottu Chart EA - AI Trading & Services</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -72,14 +72,12 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
   position:relative;
   overflow:hidden;
 }
-/* subtle dot grid */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:radial-gradient(circle,#d1d5db 1px,transparent 1px);
   background-size:32px 32px;
   opacity:.35;pointer-events:none;
 }
-/* gold accent top right */
 .hero-glow{
   position:absolute;top:-180px;right:-180px;
   width:680px;height:680px;
@@ -95,12 +93,11 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
 
 .hero-inner{
   max-width:1160px;margin:auto;width:100%;
-  display:grid;grid-template-columns:1fr 460px;
-  gap:80px;align-items:center;
+  display:grid;grid-template-columns:1fr 480px;
+  gap:60px;align-items:center;
   position:relative;z-index:2;
 }
 
-.hero-left{}
 .chip{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--gold-bg);border:1px solid var(--gold-border);
@@ -175,70 +172,115 @@ h1 .accent{
 }
 .badge i{color:var(--green);font-size:.8rem}
 
-/* ── hero right card ── */
+/* ── HERO RIGHT VIDEO CARD (PRO SUIT PRESENTATION) ── */
 .hero-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:30px;
-  box-shadow:0 32px 80px rgba(0,0,0,.09),0 0 0 1px rgba(0,0,0,.03);
+  background:#0f1117;
+  border:1px solid rgba(201,153,10,.3);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 32px 80px rgba(0,0,0,.25),0 0 30px rgba(201,153,10,.15);
   position:relative;
+  overflow:hidden;
+  color:#fff;
 }
 .hero-card::before{
   content:'';position:absolute;
-  top:0;left:36px;right:36px;height:4px;
+  top:0;left:0;right:0;height:4px;
   background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));
-  border-radius:0 0 4px 4px;
+  border-radius:4px 4px 0 0;
 }
 .hc-top{
   display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:22px;
+  margin-bottom:14px;
 }
 .hc-pair{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.4rem;font-weight:800;color:var(--ink);
+  font-size:1.3rem;font-weight:800;color:#fff;
+  display:flex;align-items:center;gap:8px;
 }
+.hc-pair i{color:var(--gold2)}
 .hc-live{
   display:flex;align-items:center;gap:5px;
-  background:var(--green-bg);border:1px solid #a7f3d0;
-  color:var(--green);font-size:.7rem;font-weight:700;
-  padding:4px 10px;border-radius:100px;letter-spacing:.06em;
+  background:rgba(10,110,69,.3);border:1px solid #10b981;
+  color:#4ade80;font-size:.7rem;font-weight:700;
+  padding:4px 12px;border-radius:100px;letter-spacing:.06em;
 }
 .hc-live::before{
   content:'';width:6px;height:6px;border-radius:50%;
   background:#10b981;animation:blink 1.4s infinite;
 }
-/* sparkline */
-.sparkline{height:110px;margin-bottom:20px;border-radius:12px;background:var(--soft);overflow:hidden}
-.sparkline svg{width:100%;height:100%}
+
+/* Video Wrapper */
+.video-frame{
+  position:relative;
+  width:100%;
+  border-radius:16px;
+  overflow:hidden;
+  border:1.5px solid rgba(201,153,10,.4);
+  background:#000;
+  box-shadow:0 12px 30px rgba(0,0,0,.5);
+  margin-bottom:16px;
+}
+.video-frame video{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+.video-overlay-badge{
+  position:absolute;
+  bottom:12px;
+  left:12px;
+  background:rgba(15,17,23,0.85);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(201,153,10,.4);
+  color:var(--gold2);
+  padding:6px 12px;
+  border-radius:8px;
+  font-size:.75rem;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
 
 .hc-stats{
   display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:10px;margin-bottom:20px;
+  gap:10px;margin-bottom:16px;
 }
 .hcs{
-  background:var(--soft);border-radius:10px;
-  padding:12px 10px;text-align:center;
+  background:rgba(255,255,255,.05);border-radius:10px;
+  padding:10px 8px;text-align:center;
+  border:1px solid rgba(255,255,255,.08);
 }
 .hcs-v{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.15rem;font-weight:800;
-  color:var(--green);display:block;line-height:1;
+  font-size:1.1rem;font-weight:800;
+  color:var(--gold2);display:block;line-height:1;
 }
-.hcs-l{font-size:.66rem;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:4px;display:block}
+.hcs-l{font-size:.65rem;color:rgba(255,255,255,.6);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-top:4px;display:block}
 
-.hc-price{
-  background:var(--gold-bg);
-  border:1.5px solid var(--gold-border);
-  border-radius:12px;padding:16px 18px;
-  display:flex;justify-content:space-between;align-items:center;
+.services-chips{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
 }
-.hcp-left .hcp-label{font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.hcp-left .hcp-sub{font-size:.7rem;color:var(--gold);opacity:.65;margin-top:2px}
-.hcp-right{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2rem;font-weight:800;color:var(--gold);
+.sc-item{
+  flex:1;
+  background:rgba(201,153,10,.12);
+  border:1px solid rgba(201,153,10,.3);
+  border-radius:10px;
+  padding:8px 6px;
+  text-align:center;
+  font-size:.73rem;
+  font-weight:600;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
 }
+.sc-item i{color:var(--gold2)}
 
 /* ════ SECTION ════ */
 section{padding:90px 48px}
@@ -313,7 +355,6 @@ section{padding:90px 48px}
   border-radius:24px;padding:40px;
   position:relative;overflow:hidden;
 }
-/* gold shimmer top */
 .price-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));
@@ -487,7 +528,6 @@ footer{
 .ai-btn-label{font-size:8px;font-weight:700;letter-spacing:.06em;color:var(--gold2);text-transform:uppercase;font-family:'Outfit',sans-serif}
 @keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 
-/* ping ring */
 .ai-btn::after{
   content:'';position:absolute;inset:-4px;
   border-radius:22px;
@@ -526,7 +566,6 @@ footer{
   to{transform:scale(.85) translateY(20px);opacity:0}
 }
 
-/* header */
 .ch-head{
   background:linear-gradient(135deg,#1a1a2e,#16213e);
   padding:14px 16px;
@@ -565,7 +604,6 @@ footer{
 }
 .ch-x:hover{color:#fff;background:rgba(255,255,255,.1);transform:rotate(90deg)}
 
-/* body */
 .ch-body{
   padding:14px;height:240px;overflow-y:auto;
   background:var(--soft);
@@ -575,7 +613,6 @@ footer{
 .ch-body::-webkit-scrollbar{width:3px}
 .ch-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-/* messages */
 .msg{
   max-width:82%;padding:10px 14px;
   border-radius:16px;margin-bottom:6px;
@@ -599,7 +636,6 @@ footer{
 @keyframes msgRight{from{transform:translateX(20px) scale(.9);opacity:0}to{transform:none;opacity:1}}
 @keyframes msgLeft{from{transform:translateX(-20px) scale(.9);opacity:0}to{transform:none;opacity:1}}
 
-/* typing */
 .typing-wrap{display:flex;gap:5px;padding:4px 2px;align-items:center}
 .typing-wrap span{
   width:7px;height:7px;border-radius:50%;
@@ -614,7 +650,6 @@ footer{
   30%{transform:translateY(-7px) scale(1.2)}
 }
 
-/* quick replies */
 .qr-row{
   display:flex;flex-wrap:wrap;gap:6px;
   padding:10px 12px;background:#fff;
@@ -631,7 +666,6 @@ footer{
 .qr:hover{background:#fdefc3;transform:translateY(-2px);box-shadow:0 4px 12px rgba(201,153,10,.2)}
 .qr:active{transform:scale(.96)}
 
-/* input */
 .ch-inp{
   display:flex;gap:8px;padding:10px 12px;
   background:#fff;border-top:1px solid var(--border);
@@ -657,7 +691,6 @@ footer{
 .send-btn:hover{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.2)}
 .send-btn:active{transform:scale(.95)}
 
-
 @media(max-width:960px){
   .hero,.section{padding-left:24px;padding-right:24px}
   nav{padding:0 20px}
@@ -665,7 +698,6 @@ footer{
   .hero-inner{grid-template-columns:1fr;gap:40px;text-align:center}
   .hero-cta-row{justify-content:center}
   .badges{justify-content:center}
-  .hero-right{display:none}
   .feat-grid{grid-template-columns:1fr 1fr}
   .ft:nth-child(3n){border-right:1px solid var(--border)}
   .ft:nth-child(2n){border-right:none}
@@ -704,61 +736,52 @@ footer{
   <div class="hero-inner">
 
     <div class="hero-left">
-      <div class="chip"><span class="chip-dot"></span>Smart Automated Trading</div>
+      <div class="chip"><span class="chip-dot"></span>Smart Automated Trading & Tech</div>
       <h1>Trade Smarter.<br>Win with <span class="accent">Chottu</span><br>Chart EA.</h1>
-      <p class="hero-desc">Professional Forex Expert Advisor with built-in risk management and a proven strategy — ready for MT4 & MT5.</p>
+      <p class="hero-desc">Professional Forex Expert Advisor, AI Bot, Premium SEO & Web Development services — presented by Chottu Chart.</p>
       <div class="hero-cta-row">
-        <a href="#leadform" class="btn-primary"><i class="fas fa-rocket"></i> Get EA Now</a>
+        <a href="#leadform" class="btn-primary"><i class="fas fa-rocket"></i> Get Started Now</a>
         <div class="price-pill">
           <span class="sym">$</span>
           <span class="amt">250</span>
-          <span class="note">ONE-TIME</span>
+          <span class="note">LIFETIME</span>
         </div>
       </div>
       <div class="badges">
-        <span class="badge"><i class="fas fa-check-circle"></i> MT4 & MT5</span>
-        <span class="badge"><i class="fas fa-check-circle"></i> Lifetime Access</span>
-        <span class="badge"><i class="fas fa-check-circle"></i> XAU/USD Optimized</span>
+        <span class="badge"><i class="fas fa-check-circle"></i> AI Trading Bot</span>
+        <span class="badge"><i class="fas fa-check-circle"></i> Premium SEO</span>
+        <span class="badge"><i class="fas fa-check-circle"></i> Web Development</span>
       </div>
     </div>
 
     <div class="hero-right">
       <div class="hero-card">
         <div class="hc-top">
-          <span class="hc-pair">XAU / USD</span>
-          <span class="hc-live">LIVE</span>
+          <span class="hc-pair"><i class="fas fa-robot"></i> CHOTTUCHART AI</span>
+          <span class="hc-live">LIVE PRESENTATION</span>
         </div>
-        <div class="sparkline">
-          <svg viewBox="0 0 400 110" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#c9990a" stop-opacity=".22"/>
-                <stop offset="100%" stop-color="#c9990a" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0,88 L40,76 L80,80 L110,62 L145,68 L175,48 L210,52 L240,35 L270,40 L300,25 L330,28 L360,14 L400,10 L400,110 L0,110Z"
-              fill="url(#sg)"/>
-            <path d="M0,88 L40,76 L80,80 L110,62 L145,68 L175,48 L210,52 L240,35 L270,40 L300,25 L330,28 L360,14 L400,10"
-              fill="none" stroke="#c9990a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="400" cy="10" r="5" fill="#c9990a">
-              <animate attributeName="r" values="4;8;4" dur="1.8s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="1;.3;1" dur="1.8s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-        <div class="hc-stats">
-          <div class="hcs"><span class="hcs-v">+24%</span><span class="hcs-l">Monthly</span></div>
-          <div class="hcs"><span class="hcs-v">0.8%</span><span class="hcs-l">Drawdown</span></div>
-          <div class="hcs"><span class="hcs-v">24/7</span><span class="hcs-l">Active</span></div>
-        </div>
-        <div class="hc-price">
-          <div>
-            <div class="hcp-left">
-              <div class="hcp-label">One-Time Price</div>
-              <div class="hcp-sub">Lifetime · No renewal</div>
-            </div>
+        
+        <!-- VIDEO PRESENTATION OF PROFESSIONAL SUIT AVATAR -->
+        <div class="video-frame">
+          <video autoplay loop muted playsinline controls>
+            <source src="WhatsApp Video 2026-07-31 at 2.34.28 PM.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-overlay-badge">
+            <i class="fas fa-user-tie"></i> Official Representative
           </div>
-          <div class="hcp-right">$250</div>
+        </div>
+
+        <div class="hc-stats">
+          <div class="hcs"><span class="hcs-v">Trading</span><span class="hcs-l">Automated EA</span></div>
+          <div class="hcs"><span class="hcs-v">SEO</span><span class="hcs-l">Services</span></div>
+          <div class="hcs"><span class="hcs-v">Web Dev</span><span class="hcs-l">Custom Sites</span></div>
+        </div>
+
+        <div class="services-chips">
+          <div class="sc-item"><i class="fas fa-chart-line"></i> Trading</div>
+          <div class="sc-item"><i class="fas fa-search"></i> SEO</div>
+          <div class="sc-item"><i class="fas fa-code"></i> Development</div>
         </div>
       </div>
     </div>
@@ -769,39 +792,39 @@ footer{
 <!-- FEATURES -->
 <section id="features">
   <div class="wrap">
-    <div class="stag">What You Get</div>
-    <h2 class="sh">Built for Traders<br>Who Want Results</h2>
-    <p class="ss">Advanced EA with everything you need — from zero-effort automation to bulletproof risk control.</p>
+    <div class="stag">What We Offer</div>
+    <h2 class="sh">Built for Growth<br>& Financial Success</h2>
+    <p class="ss">All-in-one suite providing trading automation, AI bot capabilities, search optimization, and web solutions.</p>
     <div class="feat-grid">
       <div class="ft">
         <div class="ft-num">01</div>
-        <h3>Automated Trading</h3>
-        <p>100% hands-free. Advanced algorithms trade for you 24/7 while you focus on life.</p>
+        <h3>Automated Trading EA</h3>
+        <p>100% hands-free algorithm trading 24/7 on MT4 & MT5 with built-in risk management.</p>
       </div>
       <div class="ft">
         <div class="ft-num">02</div>
-        <h3>Proven Strategy</h3>
-        <p>Backtested & optimized for consistent performance across all market conditions.</p>
+        <h3>AI Bot Solutions</h3>
+        <p>Smart AI bots built for automated analysis, speed, and real-time execution.</p>
       </div>
       <div class="ft">
         <div class="ft-num">03</div>
-        <h3>Risk Management</h3>
-        <p>Built-in stop loss, take profit & drawdown control. Your capital is always protected.</p>
+        <h3>Premium SEO Services</h3>
+        <p>Rank higher on search engines and dominate your market with high-converting SEO strategies.</p>
       </div>
       <div class="ft">
         <div class="ft-num">04</div>
-        <h3>Lifetime Access</h3>
-        <p>Pay once at $250 — no expiry, no subscription, no hidden fees. Ever.</p>
+        <h3>Website Development</h3>
+        <p>Modern, responsive, ultra-fast websites engineered to convert visitors into clients.</p>
       </div>
       <div class="ft">
         <div class="ft-num">05</div>
-        <h3>Easy Installation</h3>
-        <p>Works on MT4 & MT5. Full step-by-step setup support provided after purchase.</p>
+        <h3>Lifetime EA Access</h3>
+        <p>Pay once at $250 — no subscriptions, no recurring charges, full lifetime updates included.</p>
       </div>
       <div class="ft">
         <div class="ft-num">06</div>
-        <h3>Dedicated Support</h3>
-        <p>Direct email support at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d4dfd8c3c3c2d4dfd6c5c3f7d0dad6dedb99d4d8da">[email&#160;protected]</a> — response within 24 hours.</p>
+        <h3>24/7 Direct Support</h3>
+        <p>Dedicated assistance and quick setup guidance via email at chottuchart@gmail.com.</p>
       </div>
     </div>
   </div>
@@ -814,22 +837,21 @@ footer{
       <div>
         <div class="stag">Pricing</div>
         <h2 class="sh">One Price.<br>Lifetime Value.</h2>
-        <p class="pl-desc">No monthly fees. No subscriptions. Pay $250 once and get full lifetime access with all future updates included.</p>
+        <p class="pl-desc">Get full access to the Chottu Chart EA along with options for custom AI Bot, SEO, and Web Development services.</p>
         <ul class="check-list">
           <li><i class="fas fa-check"></i> Full EA file — MT4 & MT5 compatible</li>
           <li><i class="fas fa-check"></i> Optimized for XAU/USD (Gold)</li>
-          <li><i class="fas fa-check"></i> Stop loss & drawdown protection</li>
+          <li><i class="fas fa-check"></i> Integrated Stop Loss & Drawdown protection</li>
           <li><i class="fas fa-check"></i> Lifetime access — no expiry</li>
-          <li><i class="fas fa-check"></i> Step-by-step installation guide</li>
-          <li><i class="fas fa-check"></i> Email support included</li>
-          <li><i class="fas fa-check"></i> Compatible with ICMarkets, Exness, XM</li>
+          <li><i class="fas fa-check"></i> Complete website development & SEO options</li>
+          <li><i class="fas fa-check"></i> Step-by-step installation support</li>
         </ul>
       </div>
       <div class="price-card">
         <div class="pc-z">
           <div class="pc-lbl">⭐ Best Value</div>
           <div class="pc-name">Chottu Chart EA</div>
-          <div class="pc-sub">Full professional version — lifetime access, complete support included.</div>
+          <div class="pc-sub">Full professional version — lifetime access with complete support.</div>
           <div class="pc-price-row">
             <span class="pc-cur">$</span>
             <span class="pc-amount">250</span>
@@ -841,10 +863,9 @@ footer{
             <li><i class="fas fa-check"></i> XAU/USD Optimized</li>
             <li><i class="fas fa-check"></i> Built-in Risk Management</li>
             <li><i class="fas fa-check"></i> Lifetime Access</li>
-            <li><i class="fas fa-check"></i> Installation Support</li>
-            <li><i class="fas fa-check"></i> Email Support Included</li>
+            <li><i class="fas fa-check"></i> Web & SEO Integration Available</li>
           </ul>
-          <a href="#leadform" class="pc-btn">Get EA for $250 →</a>
+          <a href="#leadform" class="pc-btn">Get Started for $250 →</a>
         </div>
       </div>
     </div>
@@ -858,16 +879,16 @@ footer{
       <div>
         <div class="stag">Enquiry</div>
         <h2 class="sh">Get Started<br>Today</h2>
-        <p class="fi-desc">Fill the form and our team will reach out with payment details, the EA file, and full installation guide — all within 24 hours.</p>
+        <p class="fi-desc">Fill out the form to request Chottu Chart EA, Web Development, or SEO services. We reply within 24 hours.</p>
         <div class="contact-items">
           <div class="ci">
             <div class="ci-icon"><i class="fas fa-envelope"></i></div>
-            <a href="/cdn-cgi/l/email-protection#6b0803041f1f1e08030a191f2b0c060a020745080406"><span class="__cf_email__" data-cfemail="e3808b8c979796808b829197a3848e828a8fcd808c8e">[email&#160;protected]</span></a>
+            <a href="mailto:chottuchart@gmail.com">chottuchart@gmail.com</a>
           </div>
         </div>
       </div>
       <div class="fbox">
-        <div class="fbox-title">EA Enquiry Form</div>
+        <div class="fbox-title">Enquiry Form</div>
         <div class="fbox-sub">We'll reply within 24 hours</div>
         <form action="https://formsubmit.co/chottuchart@gmail.com" method="POST">
           <input type="hidden" name="_captcha" value="false">
@@ -885,7 +906,7 @@ footer{
           </div>
           <div class="field">
             <label>Message (Optional)</label>
-            <textarea name="message" placeholder="I'm interested in Chottu Chart EA..."></textarea>
+            <textarea name="message" placeholder="I am interested in Chottu Chart EA / SEO / Web Development..."></textarea>
           </div>
           <button type="submit" class="btn-submit">
             <i class="fas fa-paper-plane"></i> Submit Enquiry
@@ -896,18 +917,18 @@ footer{
   </div>
 </section>
 
-<!-- FOOTER — no logo -->
+<!-- FOOTER -->
 <footer>
   <div class="foot-brand">
     Chottu Chart EA
-    <span>© 2026 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97f4fff8e3e3e2f4fff6e5e3d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a></span>
+    <span>© 2026 · chottuchart@gmail.com</span>
   </div>
   <div class="foot-social">
     <a href="https://www.linkedin.com/company/chottuchart/" target="_blank" title="LinkedIn">
       <i class="fab fa-linkedin"></i>
     </a>
   </div>
-  <div class="foot-copy">Smart Automated Forex Trading</div>
+  <div class="foot-copy">Smart Automated Trading & Digital Solutions</div>
 </footer>
 
 <!-- AI BOT -->
@@ -931,14 +952,14 @@ footer{
   </div>
 
   <div class="ch-body" id="chatBody">
-    <div class="msg bot">👋 Hi! I'm Chottu AI. Ask me anything about the EA!</div>
+    <div class="msg bot">👋 Hi! I'm Chottu AI. Ask me about our EA, SEO, or Web Development services!</div>
   </div>
 
   <div class="qr-row">
     <button class="qr" onclick="qa('price')">💰 Price</button>
-    <button class="qr" onclick="qa('gold')">🥇 Gold</button>
+    <button class="qr" onclick="qa('seo')">🚀 SEO</button>
+    <button class="qr" onclick="qa('web')">💻 Web Dev</button>
     <button class="qr" onclick="qa('install')">⚙️ Install</button>
-    <button class="qr" onclick="qa('broker')">🏦 Broker</button>
   </div>
 
   <div class="ch-inp">
@@ -983,7 +1004,6 @@ function sendMsg(){
   const msg=inp.value.trim();
   if(!msg)return;
 
-  // user bubble
   const ub=document.createElement('div');
   ub.className='msg user';
   ub.textContent=msg;
@@ -991,14 +1011,12 @@ function sendMsg(){
   inp.value='';
   body.scrollTop=body.scrollHeight;
 
-  // typing bubble
   const tb=document.createElement('div');
   tb.className='msg bot';
   tb.innerHTML='<div class="typing-wrap"><span></span><span></span><span></span></div>';
   body.appendChild(tb);
   body.scrollTop=body.scrollHeight;
 
-  // reply after delay
   const delay=500+Math.random()*400;
   setTimeout(()=>{
     tb.remove();
@@ -1012,32 +1030,16 @@ function sendMsg(){
 
 function getReply(t){
   if(t.includes('hello')||t.includes('hi')||t.includes('hey'))
-    return "👋 Welcome! I'm here to help. What would you like to know about Chottu Chart EA?";
-  if(t.includes('price')||t.includes('cost')||t.includes('how much')||t.includes('250'))
-    return "💰 Chottu Chart EA is <b>$250 — one-time payment</b>. Lifetime access, no renewals, no hidden fees!";
-  if(t.includes('profit')||t.includes('return')||t.includes('earn'))
-    return "📈 Profit depends on market conditions & risk settings. EA is built for <b>consistent, steady growth</b>.";
-  if(t.includes('risk')||t.includes('safe')||t.includes('loss'))
-    return "🛡️ Built-in <b>stop loss, take profit & drawdown control</b> — your capital is automatically protected.";
-  if(t.includes('mt4')||t.includes('mt5')||t.includes('platform'))
-    return "✅ Works perfectly on <b>both MT4 and MT5</b> platforms.";
-  if(t.includes('gold')||t.includes('xau'))
-    return "🥇 Specially optimized for <b>XAU/USD (Gold)</b> — best results on Gold pairs!";
-  if(t.includes('lot')||t.includes('size'))
-    return "📊 Recommended: <b>0.01 lots per $1,000</b> balance for safe, consistent trading.";
-  if(t.includes('install')||t.includes('setup')||t.includes('how to get'))
-    return "⚙️ Fill the enquiry form below — our team sends the EA file + <b>full installation guide</b> within 24 hours!";
-  if(t.includes('strategy')||t.includes('how it work'))
-    return "🧠 <b>AI-based trend + price action strategy</b>, backtested & optimized across all market conditions.";
-  if(t.includes('broker')||t.includes('account'))
-    return "🏦 Recommended: <b>ICMarkets, Exness, XM</b>. Works with any ECN/STP broker.";
-  if(t.includes('contact')||t.includes('support')||t.includes('email'))
+    return "👋 Welcome! Ask me about Chottu Chart EA, Premium SEO, or Web Development!";
+  if(t.includes('price')||t.includes('cost')||t.includes('250'))
+    return "💰 Chottu Chart EA is <b>$250 — one-time payment</b>. Lifetime access, no renewals!";
+  if(t.includes('seo'))
+    return "🚀 We offer <b>Premium SEO Services</b> to boost your ranking and traffic!";
+  if(t.includes('web')||t.includes('dev'))
+    return "💻 Custom <b>Website Development</b> tailored to your business needs.";
+  if(t.includes('contact')||t.includes('email'))
     return "📧 Email: <b>chottuchart@gmail.com</b> — we reply within 24 hours!";
-  if(t.includes('lifetime')||t.includes('expiry')||t.includes('renew'))
-    return "♾️ <b>No expiry, no renewal</b> — pay $250 once and use it forever with all updates!";
-  if(t.includes('thanks')||t.includes('thank')||t.includes('ok'))
-    return "😊 You're welcome! Happy trading! 🚀";
-  return "🙂 Fill the <b>enquiry form below</b> or email <b>chottuchart@gmail.com</b> — we'll assist you promptly!";
+  return "🙂 Fill out the <b>enquiry form</b> or email <b>chottuchart@gmail.com</b> for more details!";
 }
 </script>
 </body>
